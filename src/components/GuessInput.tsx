@@ -1,9 +1,12 @@
 import { useState } from "react";
+import type { GameStatus } from "./Game";
 
 interface Props {
   handleSubmitGuess: (attemptGuess: string) => void;
+  gameStatus: GameStatus;
 }
-export default function GuessInput({ handleSubmitGuess }: Props) {
+
+export default function GuessInput({ handleSubmitGuess, gameStatus }: Props) {
   const [attemptGuess, setAttemptGuess] = useState("");
 
   const handleSubmit = (event: React.SyntheticEvent) => {
@@ -20,12 +23,15 @@ export default function GuessInput({ handleSubmitGuess }: Props) {
       <label htmlFor="guess">Enter guess:</label>
       <input
         value={attemptGuess}
-        onChange={(event) => setAttemptGuess(event.target.value.toUpperCase())}
+        onChange={(event) =>
+          setAttemptGuess(event.currentTarget.value.toUpperCase())
+        }
         id="guess"
         type="text"
         minLength={5}
         maxLength={5}
         required
+        disabled={gameStatus !== "running"}
       />
     </form>
   );

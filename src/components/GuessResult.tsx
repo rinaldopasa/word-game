@@ -1,7 +1,6 @@
 import Guess from "./Guess";
 import { range } from "../utils.ts";
-
-const NUM_OF_GUESSES_ALLOWED = 6;
+import { NUM_OF_GUESSES_ALLOWED } from "./Game";
 
 interface GuessResult {
   guesses: string[];
